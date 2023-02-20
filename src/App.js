@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import MainPage from "./pages/MainPage";
+import dataContext from "./hooks/dataContext";
+import fetchAPI from "./helpers/APIHandler";
 
 function App() {
+  useEffect(() => {
+    const planetData = fetchAPI();
+    console.log(planetData);
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <dataContext.Provider>
+      <div>
+        <MainPage />
+      </div>
+    </dataContext.Provider>
   );
 }
 
